@@ -1,7 +1,9 @@
 package emg.soccerstats;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,5 +18,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new JsonParser("http://www.football-data.org/v1/competitions");
+    }
+
+    //Whenever the competitions button is clicked it jumps to another activity
+    public void competitionsButton(View view) {
+        Intent competitionIntent = new Intent(this, Competitions.class);
+        startActivity(competitionIntent);
     }
 }

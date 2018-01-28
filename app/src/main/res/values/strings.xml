@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Soccer Stats</string>
+
+    <!--Resources for main activity-->
+    <string name="competitions_button">Competitions</string>
+    <!--Resources for list layout-->
+    <string name="caption">Caption: </string>
+    <string name="soccer_league">League: </string>
+    <string name="year_played">Year: </string>
+    <string name="current_day">Day: </string>
+    <string name="total_days">Total Days: </string>
+    <string name="teams_playing">Teams</string>
+    <string name="fixtures">Fixtures</string>
+
 </resources>
