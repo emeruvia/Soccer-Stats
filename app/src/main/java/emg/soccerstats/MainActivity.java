@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new JsonParser("http://www.football-data.org/v1/competitions");
     }
 
     //Whenever the competitions button is clicked it jumps to another activity

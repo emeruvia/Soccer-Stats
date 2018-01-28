@@ -9,6 +9,8 @@
     <string name="year_played">Year: </string>
     <string name="current_day">Day: </string>
     <string name="total_days">Total Days: </string>
+    <string name="total_teams">Total teams: </string>
+    <string name="total_matches">Total Matches: </string>
     <string name="teams_playing">Teams</string>
     <string name="fixtures">Fixtures</string>
 
