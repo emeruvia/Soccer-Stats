@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -17,24 +19,31 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Competitions extends AppCompatActivity {
 
-    ArrayList<String> dataList = new ArrayList<>();
-    ArrayList<Integer> idList = new ArrayList<>();
-    ArrayList<String> captionList = new ArrayList<>();
-    ArrayList<String> leagueList = new ArrayList<>();
-    ArrayList<String> yearList = new ArrayList<>();
-    ArrayList<Integer> currentDayList = new ArrayList<>();
-    ArrayList<Integer> totalDaysList = new ArrayList<>();
-    ArrayList<Integer> numOfTeamsList = new ArrayList<>();
-    ArrayList<Integer> numOfGamesList = new ArrayList<>();
+    private List<SoccerData> soccerDataList;
+    private GridLayoutManager gridLayoutManager;
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
+
+    private SoccerData soccerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_competitions);
-//        JsonParser jsonParser = new JsonParser("http://www.football-data.org/v1/competitions");
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        soccerDataList = new ArrayList<>();
+
+        gridLayoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        recyclerViewAdapter = new RecyclerViewAdapter(this, soccerDataList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
         DownloadTask task = new DownloadTask();
         task.execute("http://www.football-data.org/v1/competitions");
 
@@ -47,20 +56,12 @@ public class Competitions extends AppCompatActivity {
 
         private ArrayList<String> dataList = new ArrayList<>();
 
-        private ArrayList<String> getDataList() {
-            return dataList;
-        }
-
-        public void setDataList(ArrayList<String> dataList) {
-            this.dataList = dataList;
-        }
-
         @Override
         protected String doInBackground(String... strings) {
 
-            String result = "";
+            StringBuilder result = new StringBuilder();
             URL url;
-            HttpURLConnection urlConnection = null;
+            HttpURLConnection urlConnection;
 
             try {
                 url = new URL(strings[0]);
@@ -72,10 +73,10 @@ public class Competitions extends AppCompatActivity {
 
                 while (data != -1) {
                     char current = (char) data;
-                    result += current;
+                    result.append(current);
                     data = reader.read();
                 }
-                return result;
+                return result.toString();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -92,7 +93,6 @@ public class Competitions extends AppCompatActivity {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     //gets the value of the string
-                    String data = jsonObject.toString().replaceAll(",", "\n");
                     String idData = jsonObject.getString("id");
                     String captionData = jsonObject.getString("caption");
                     String leagueData = jsonObject.getString("league");
@@ -101,28 +101,19 @@ public class Competitions extends AppCompatActivity {
                     String totalDaysData = jsonObject.getString("numberOfMatchdays");
                     String numOfTeamsData = jsonObject.getString("numberOfTeams");
                     String numOfGamesData = jsonObject.getString("numberOfGames");
+                    String lastUpdateData = jsonObject.getString("lastUpdated");
 
-                    //Append the data values into their respectives lists.
-                    dataList.add(data);
-                    idList.add(Integer.valueOf(idData));
-                    captionList.add(captionData);
-                    leagueList.add(leagueData);
-                    yearList.add(yearData);
-                    currentDayList.add(Integer.valueOf(currentDayData));
-                    totalDaysList.add(Integer.valueOf(totalDaysData));
-                    numOfTeamsList.add(Integer.valueOf(numOfTeamsData));
-                    numOfGamesList.add(Integer.valueOf(numOfGamesData));
+                    soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
+                            yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
+                            Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
+                            lastUpdateData);
+
+                    soccerDataList.add(soccerData);
 
                 }
-                for (String s : dataList) {
-                    Log.d("Data", s);
+                for (SoccerData s : soccerDataList) {
+                    Log.d("SoccerData", s.getCaption());
                 }
-                for (Integer i : idList) {
-                    Log.d("ID", String.valueOf(i));
-                }
-
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

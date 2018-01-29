@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by SumringaH on 1/28/2018.
  */
@@ -15,11 +17,13 @@ import android.widget.TextView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
 
 
-    private int numberOfItems;
+    private Context context;
+    private List<SoccerData> soccerData;
 
 
-    public RecyclerViewAdapter(int numberOfItems) {
-        this.numberOfItems = numberOfItems;
+    public RecyclerViewAdapter(Context context, List<SoccerData> soccerData) {
+        this.context = context;
+        this.soccerData = soccerData;
     }
 
     @Override
@@ -40,21 +44,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return numberOfItems;
+        return soccerData.size();
     }
 
 
-    class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView captionTextView;
         TextView leagueTextView;
         TextView yearTextView;
         TextView currentDayTextView;
         TextView totalDaysTextView;
+        TextView totalTeamsTextView;
+        TextView totalMatchesTextView;
         Button teamButton;
+
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
+            captionTextView = (TextView) itemView.findViewById(R.id.captionTextView);
+            leagueTextView = (TextView) itemView.findViewById(R.id.leagueTextView);
+            yearTextView = (TextView) itemView.findViewById(R.id.yearTextView);
+            currentDayTextView = (TextView) itemView.findViewById(R.id.currentDayTextView);
+            totalDaysTextView = (TextView) itemView.findViewById(R.id.totalDaysTextView);
+            totalTeamsTextView = (TextView) itemView.findViewById(R.id.totalTeamsTextView);
+            totalMatchesTextView = (TextView) itemView.findViewById(R.id.totalMatchesTextView);
+            teamButton = (Button) itemView.findViewById(R.id.teamsButton);
         }
     }
 

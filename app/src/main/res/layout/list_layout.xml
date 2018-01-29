@@ -63,18 +63,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/totalTeams"
+                    android:id="@+id/totalTeamsTextView"
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/total_teams"/>
+                    android:text="@string/total_teams" />
 
                 <TextView
-                    android:id="@+id/totalMatches"
+                    android:id="@+id/totalMatchesTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/total_matches"/>
+                    android:text="@string/total_matches" />
 
             </LinearLayout>
 
