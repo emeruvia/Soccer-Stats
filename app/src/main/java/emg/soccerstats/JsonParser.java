@@ -28,17 +28,9 @@ public class JsonParser extends AppCompatActivity {
 
     public JsonParser(String url) {
         DownloadTask task = new DownloadTask();
-        this.dataList = task.getDataList();
         task.execute(url);
     }
 
-    public ArrayList<String> getDataList() {
-        return dataList;
-    }
-
-    public void setDataList(ArrayList<String> dataList) {
-        this.dataList = dataList;
-    }
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
