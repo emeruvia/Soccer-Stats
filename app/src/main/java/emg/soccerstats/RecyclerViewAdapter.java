@@ -1,5 +1,6 @@
 package emg.soccerstats;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,8 +38,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        holder.captionTextView.setText(soccerData.get(position).getCaption());
+        holder.leagueTextView.setText("League: " + soccerData.get(position).getLeague());
+        holder.yearTextView.setText("Year: " + soccerData.get(position).getYear());
+        holder.totalDaysTextView.setText("Day: " + soccerData.get(position).getCurrentMatchday());
+        holder.totalTeamsTextView.setText("Total Teams: " + soccerData.
+                get(position).getNumberOfTeams());
+        holder.totalMatchesTextView.setText("Total Matches: " + soccerData.
+                get(position).getNumberOfGames());
 
     }
 

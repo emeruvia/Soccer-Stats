@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -38,85 +39,91 @@ public class Competitions extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         soccerDataList = new ArrayList<>();
 
-        gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+//        DownloadTask task = new DownloadTask();
+        loadData("http://www.football-data.org/v1/competitions");
+
+        for (SoccerData s : soccerDataList) {
+            Log.d("SoccerData", s.getCaption());
+        }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         recyclerViewAdapter = new RecyclerViewAdapter(this, soccerDataList);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-        DownloadTask task = new DownloadTask();
-        task.execute("http://www.football-data.org/v1/competitions");
-
     }
 
+//    @SuppressLint("StaticFieldLeak")
+//    public class DownloadTask extends AsyncTask<String, Void, String> {
 
-    @SuppressLint("StaticFieldLeak")
-    public class DownloadTask extends AsyncTask<String, Void, String> {
+    private void loadData(String url) {
 
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
 
-        private ArrayList<String> dataList = new ArrayList<>();
+            @Override
+            protected String doInBackground(String... strings) {
 
-        @Override
-        protected String doInBackground(String... strings) {
+                StringBuilder result = new StringBuilder();
+                URL url;
+                HttpURLConnection urlConnection;
 
-            StringBuilder result = new StringBuilder();
-            URL url;
-            HttpURLConnection urlConnection;
+                try {
+                    url = new URL(strings[0]);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    InputStream inputStream = urlConnection.getInputStream();
+                    InputStreamReader reader = new InputStreamReader(inputStream);
 
-            try {
-                url = new URL(strings[0]);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = urlConnection.getInputStream();
-                InputStreamReader reader = new InputStreamReader(inputStream);
+                    int data = reader.read();
 
-                int data = reader.read();
-
-                while (data != -1) {
-                    char current = (char) data;
-                    result.append(current);
-                    data = reader.read();
+                    while (data != -1) {
+                        char current = (char) data;
+                        result.append(current);
+                        data = reader.read();
+                    }
+                    return result.toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                return result.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
+                return null;
             }
-            return null;
-        }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
 
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                try {
+                    JSONArray jsonArray = new JSONArray(result);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    //gets the value of the string
-                    String idData = jsonObject.getString("id");
-                    String captionData = jsonObject.getString("caption");
-                    String leagueData = jsonObject.getString("league");
-                    String yearData = jsonObject.getString("year");
-                    String currentDayData = jsonObject.getString("currentMatchday");
-                    String totalDaysData = jsonObject.getString("numberOfMatchdays");
-                    String numOfTeamsData = jsonObject.getString("numberOfTeams");
-                    String numOfGamesData = jsonObject.getString("numberOfGames");
-                    String lastUpdateData = jsonObject.getString("lastUpdated");
+                        //gets the value of the string
+                        String idData = jsonObject.getString("id");
+                        String captionData = jsonObject.getString("caption");
+                        String leagueData = jsonObject.getString("league");
+                        String yearData = jsonObject.getString("year");
+                        String currentDayData = jsonObject.getString("currentMatchday");
+                        String totalDaysData = jsonObject.getString("numberOfMatchdays");
+                        String numOfTeamsData = jsonObject.getString("numberOfTeams");
+                        String numOfGamesData = jsonObject.getString("numberOfGames");
+                        String lastUpdateData = jsonObject.getString("lastUpdated");
 
-                    soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
-                            yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
-                            Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
-                            lastUpdateData);
+                        soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
+                                yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
+                                Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
+                                lastUpdateData);
 
-                    soccerDataList.add(soccerData);
+                        soccerDataList.add(soccerData);
 
+                    }
+//                    for (SoccerData s : soccerDataList) {
+//                        Log.d("SoccerData", s.getCaption());
+//                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                for (SoccerData s : soccerDataList) {
-                    Log.d("SoccerData", s.getCaption());
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        }
+        };
+        task.execute(url);
     }
 }
