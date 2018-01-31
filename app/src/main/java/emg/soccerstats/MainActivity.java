@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,14 +31,16 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
+    private TextView errorTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerViewId);
+        progressBar = findViewById(R.id.progress_bar);
+        recyclerView = findViewById(R.id.recyclerViewId);
+        errorTextView = findViewById(R.id.error_textview);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -47,11 +50,20 @@ public class MainActivity extends AppCompatActivity {
 
         loadAPIData();
 
+        for (SoccerData s : soccerDataList) {
+            Log.i("JSON ID", String.valueOf(s.getId()));
+        }
+
     }
 
     public void loadAPIData() {
 
-        new FetchAPIDataTask().execute("http://www.football-data.org/v1/competitions");
+        try {
+            new FetchAPIDataTask().execute("http://www.football-data.org/v1/competitions");
+        } catch (NullPointerException e) {
+            errorTextView.setText("API Error call");
+            errorTextView.setVisibility(View.VISIBLE);
+        }
 
     }
     public class FetchAPIDataTask extends AsyncTask<String, Void, String> {

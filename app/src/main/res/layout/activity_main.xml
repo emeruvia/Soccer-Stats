@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="emg.soccerstats.MainActivity">
 
+    <TextView
+        android:id="@+id/error_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:layout_above="@id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000"
+        android:visibility="gone"/>
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
