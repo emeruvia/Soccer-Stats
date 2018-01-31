@@ -25,9 +25,6 @@ import java.util.List;
 public class Competitions extends AppCompatActivity {
 
     private List<SoccerData> soccerDataList;
-    private GridLayoutManager gridLayoutManager;
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
 
     private SoccerData soccerData;
 
@@ -36,30 +33,24 @@ public class Competitions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_competitions);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         soccerDataList = new ArrayList<>();
 
-//        DownloadTask task = new DownloadTask();
         loadData("http://www.football-data.org/v1/competitions");
-
-        for (SoccerData s : soccerDataList) {
-            Log.d("SoccerData", s.getCaption());
-        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerViewAdapter = new RecyclerViewAdapter(this, soccerDataList);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, soccerDataList);
         recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
 
     }
 
-//    @SuppressLint("StaticFieldLeak")
-//    public class DownloadTask extends AsyncTask<String, Void, String> {
+    private void loadData(String webpage) {
 
-    private void loadData(String url) {
-
-        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, String> task
+                = new AsyncTask<String, Void, String>() {
 
             @Override
             protected String doInBackground(String... strings) {
@@ -116,14 +107,11 @@ public class Competitions extends AppCompatActivity {
                         soccerDataList.add(soccerData);
 
                     }
-//                    for (SoccerData s : soccerDataList) {
-//                        Log.d("SoccerData", s.getCaption());
-//                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         };
-        task.execute(url);
+        task.execute(webpage);
     }
 }

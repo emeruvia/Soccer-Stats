@@ -44,7 +44,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.captionTextView.setText(soccerData.get(position).getCaption());
         holder.leagueTextView.setText("League: " + soccerData.get(position).getLeague());
         holder.yearTextView.setText("Year: " + soccerData.get(position).getYear());
-        holder.totalDaysTextView.setText("Day: " + soccerData.get(position).getCurrentMatchday());
+        holder.currentDayTextView.setText("Day: " + soccerData.get(position).getCurrentMatchday());
+        holder.totalDaysTextView.setText("Total Days: " + soccerData.get(position)
+                .getNumberOfMatchdays());
         holder.totalTeamsTextView.setText("Total Teams: " + soccerData.
                 get(position).getNumberOfTeams());
         holder.totalMatchesTextView.setText("Total Matches: " + soccerData.

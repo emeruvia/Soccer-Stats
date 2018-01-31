@@ -101,4 +101,5 @@ public class SoccerData {
     public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
 }
