@@ -27,14 +27,14 @@
 
                 <TextView
                     android:id="@+id/leagueTextView"
-                    android:layout_width="31dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/soccer_league"/>
 
                 <TextView
                     android:id="@+id/yearTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/year_played"/>
@@ -49,14 +49,14 @@
 
                 <TextView
                     android:id="@+id/currentDayTextView"
-                    android:layout_width="70dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/current_day"/>
 
                 <TextView
                     android:id="@+id/totalDaysTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/total_days"/>
@@ -71,14 +71,14 @@
 
                 <TextView
                     android:id="@+id/totalTeamsTextView"
-                    android:layout_width="95dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/total_teams" />
 
                 <TextView
                     android:id="@+id/totalMatchesTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/total_matches" />

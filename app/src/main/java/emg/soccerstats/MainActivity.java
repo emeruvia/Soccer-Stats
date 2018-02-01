@@ -24,6 +24,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import emg.soccerstats.DataObjects.SoccerData;
+import emg.soccerstats.RecyclerViews.CompetitionRecyclerAdapter;
+
 public class MainActivity extends AppCompatActivity implements CompetitionRecyclerAdapter.ClickListener {
 
     private SoccerData soccerData;
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
         } catch (NullPointerException e) {
             errorTextView.setText("API Error call");
             errorTextView.setVisibility(View.VISIBLE);
+            e.printStackTrace();
         }
 
     }
