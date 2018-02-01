@@ -1,4 +1,4 @@
-package emg.soccerstats.DataObjects;
+package emg.soccerstats.data_objects;
 
 /**
  * Created by EMG on 1/29/2018.

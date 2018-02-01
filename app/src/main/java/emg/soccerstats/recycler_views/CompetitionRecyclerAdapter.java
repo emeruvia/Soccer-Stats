@@ -1,4 +1,4 @@
-package emg.soccerstats.RecyclerViews;
+package emg.soccerstats.recycler_views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,40 +11,37 @@ import android.widget.TextView;
 import java.util.List;
 
 import emg.soccerstats.R;
-import emg.soccerstats.DataObjects.SoccerData;
+import emg.soccerstats.data_objects.SoccerData;
 
 /**
  * Created by SumringaH on 1/28/2018.
  */
 
-public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<CompetitionRecyclerAdapter.RecyclerViewHolder> {
+public class CompetitionRecyclerAdapter extends
+        RecyclerView.Adapter<CompetitionRecyclerAdapter.CompetitionsViewHolder> {
 
 
-    private Context context;
     private List<SoccerData> soccerData;
 
     ClickListener clickListener;
 
 
-    public CompetitionRecyclerAdapter(Context context, List<SoccerData> soccerData) {
-        this.context = context;
+    public CompetitionRecyclerAdapter(List<SoccerData> soccerData) {
         this.soccerData = soccerData;
     }
 
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CompetitionsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean attachToParentImmediately = false;
 
-        View view = inflater.inflate(R.layout.list_layout, parent, attachToParentImmediately);
-        RecyclerViewHolder viewHolder = new RecyclerViewHolder(view);
-        return viewHolder;
+        View view = inflater.inflate(R.layout.list_layout, parent, false);
+        return new CompetitionsViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(CompetitionsViewHolder holder, final int position) {
         holder.captionTextView.setText(soccerData.get(position).getCaption());
         holder.leagueTextView.setText("League: " + soccerData.get(position).getLeague());
         holder.yearTextView.setText("Year: " + soccerData.get(position).getYear());
@@ -67,7 +64,7 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
     }
 
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CompetitionsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView captionTextView;
         TextView leagueTextView;
@@ -77,7 +74,7 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
         TextView totalTeamsTextView;
         TextView totalMatchesTextView;
 
-        public RecyclerViewHolder(View itemView) {
+        public CompetitionsViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);

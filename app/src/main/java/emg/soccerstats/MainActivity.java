@@ -24,8 +24,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import emg.soccerstats.DataObjects.SoccerData;
-import emg.soccerstats.RecyclerViews.CompetitionRecyclerAdapter;
+import emg.soccerstats.data_objects.SoccerData;
+import emg.soccerstats.recycler_views.CompetitionRecyclerAdapter;
 
 public class MainActivity extends AppCompatActivity implements CompetitionRecyclerAdapter.ClickListener {
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
         recyclerView.setLayoutManager(layoutManager);
 
         CompetitionRecyclerAdapter viewAdapter =
-                new CompetitionRecyclerAdapter(this, soccerDataList);
+                new CompetitionRecyclerAdapter(soccerDataList);
         viewAdapter.setClickListener(this);
         recyclerView.setAdapter(viewAdapter);
 
