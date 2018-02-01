@@ -24,10 +24,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CompetitionRecyclerAdapter.ClickListener {
 
     private SoccerData soccerData;
-    private List<SoccerData> soccerDataList = new ArrayList<>();
+    private List<SoccerData> soccerDataList;
+    private List<Integer> idList;
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -42,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewId);
         errorTextView = findViewById(R.id.error_textview);
 
+        soccerDataList = new ArrayList<>();
+        idList = new ArrayList<>();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerViewAdapter viewAdapter = new RecyclerViewAdapter(this, soccerDataList);
+        CompetitionRecyclerAdapter viewAdapter =
+                new CompetitionRecyclerAdapter(this, soccerDataList, idList);
+        viewAdapter.setClickListener(this);
         recyclerView.setAdapter(viewAdapter);
 
         loadAPIData();
@@ -54,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
             Log.i("JSON ID", String.valueOf(s.getId()));
         }
 
+    }
+
+    @Override
+    public void itemClicked(View view, int position) {
+        Intent intent = new Intent(this, Teams.class);
+        intent.putExtra("id", idList.get(position));
+        startActivity(intent);
     }
 
     public void loadAPIData() {
@@ -66,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    @SuppressLint("StaticFieldLeak")
     public class FetchAPIDataTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -128,9 +143,15 @@ public class MainActivity extends AppCompatActivity {
                             Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
                             lastUpdateData);
 
-                    soccerDataList.add(soccerData);
+                    idList.add(Integer.valueOf(idData));
 
+                    soccerDataList.add(soccerData);
                 }
+
+                for (SoccerData s : soccerDataList) {
+                    Log.i("TESt", String.valueOf(s.getId()));
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
