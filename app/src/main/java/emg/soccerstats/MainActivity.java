@@ -50,21 +50,18 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
         recyclerView.setLayoutManager(layoutManager);
 
         CompetitionRecyclerAdapter viewAdapter =
-                new CompetitionRecyclerAdapter(this, soccerDataList, idList);
+                new CompetitionRecyclerAdapter(this, soccerDataList);
         viewAdapter.setClickListener(this);
         recyclerView.setAdapter(viewAdapter);
 
         loadAPIData();
-
-        for (SoccerData s : soccerDataList) {
-            Log.i("JSON ID", String.valueOf(s.getId()));
-        }
 
     }
 
     @Override
     public void itemClicked(View view, int position) {
         Intent intent = new Intent(this, Teams.class);
+        Log.d("IdTest", String.valueOf(idList.get(position)));
         intent.putExtra("id", idList.get(position));
         startActivity(intent);
     }
@@ -146,10 +143,6 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
                     idList.add(Integer.valueOf(idData));
 
                     soccerDataList.add(soccerData);
-                }
-
-                for (SoccerData s : soccerDataList) {
-                    Log.i("TESt", String.valueOf(s.getId()));
                 }
 
             } catch (JSONException e) {

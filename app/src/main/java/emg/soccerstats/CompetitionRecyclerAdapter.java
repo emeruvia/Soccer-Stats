@@ -20,15 +20,13 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
 
     private Context context;
     private List<SoccerData> soccerData;
-    private List<Integer> idList;
 
     ClickListener clickListener;
 
 
-    public CompetitionRecyclerAdapter(Context context, List<SoccerData> soccerData, List<Integer> idList) {
+    public CompetitionRecyclerAdapter(Context context, List<SoccerData> soccerData) {
         this.context = context;
         this.soccerData = soccerData;
-        this.idList = idList;
     }
 
     @Override
@@ -38,7 +36,7 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
         boolean attachToParentImmediately = false;
 
         View view = inflater.inflate(R.layout.list_layout, parent, attachToParentImmediately);
-        RecyclerViewHolder viewHolder = new RecyclerViewHolder(view, idList);
+        RecyclerViewHolder viewHolder = new RecyclerViewHolder(view);
         return viewHolder;
     }
 
@@ -69,8 +67,6 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        List<Integer> idList;
-
         TextView captionTextView;
         TextView leagueTextView;
         TextView yearTextView;
@@ -79,10 +75,8 @@ public class CompetitionRecyclerAdapter extends RecyclerView.Adapter<Competition
         TextView totalTeamsTextView;
         TextView totalMatchesTextView;
 
-        public RecyclerViewHolder(View itemView, List<Integer> idList) {
+        public RecyclerViewHolder(View itemView) {
             super(itemView);
-
-            this.idList = idList;
 
             itemView.setOnClickListener(this);
 

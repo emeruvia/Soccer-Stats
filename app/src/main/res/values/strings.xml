@@ -14,4 +14,7 @@
     <string name="teams_playing">Teams</string>
     <string name="fixtures">Fixtures</string>
 
+    <!--Resources for teams activity -->
+    <string name="error_id">Error getting the ID</string>
+
 </resources>
