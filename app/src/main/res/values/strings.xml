@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Soccer Stats</string>
 
-    <!--Resources for main activity-->
-    <string name="competitions_button">Competitions</string>
     <!--Resources for list layout-->
     <string name="caption">Caption: </string>
     <string name="soccer_league">League: </string>
@@ -12,9 +10,16 @@
     <string name="total_teams">Total teams: </string>
     <string name="total_matches">Total Matches: </string>
     <string name="teams_playing">Teams</string>
-    <string name="fixtures">Fixtures</string>
 
     <!--Resources for teams activity -->
     <string name="error_id">Error getting the ID</string>
+    
+    <!--Resources for teams list cardview -->
+    <string name="team_number">Team: #</string>
+    <string name="team_name">Team Name</string>
+    <string name="team_code">Team Code</string>
+    <string name="image_description">Team\'s Crest</string>
+
+
 
 </resources>
