@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="emg.soccerstats.MainActivity"
-    android:background="#303030">
-
-
+    android:background="#808080">
 
     <TextView
         android:id="@+id/error_textview"
@@ -31,8 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/progress_bar"
-        android:padding="10dp"
-        android:visibility="gone">
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:background="@color/colorAccent">
 
     </android.support.v7.widget.RecyclerView>
 
