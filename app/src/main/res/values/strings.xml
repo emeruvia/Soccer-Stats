@@ -21,7 +21,7 @@
     <string name="image_description">Team\'s Crest</string>
 
     <!--Resources for matches list cardview -->
-    <string name="match_number">Match: #</string>
+    <string name="match_number">Match Day: #</string>
     <string name="HOME_TEAM">HOME</string>
     <string name="AWAY_TEAM">AWAY</string>
     <string name="home_goals">0</string>

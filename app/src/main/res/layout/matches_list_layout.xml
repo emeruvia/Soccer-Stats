@@ -11,29 +11,32 @@
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/matchDayTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/match_number"/>
+            android:text="@string/match_number" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/homeTeamTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
                 android:text="@string/HOME_TEAM"
-                android:textSize="18sp"/>
+                android:textAlignment="center"
+                android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/awayTeamTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
                 android:text="@string/AWAY_TEAM"
-                android:textSize="18sp"/>
+                android:textAlignment="center"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -42,32 +45,36 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/homeGoalsTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/home_goals"
                 android:textAlignment="center"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
 
             <TextView
+                android:id="@+id/awayGoalsTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
                 android:text="@string/away_goals"
-                android:textSize="22sp"/>
+                android:textAlignment="center"
+                android:textSize="22sp" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/matchStatusTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/match_status"/>
+            android:text="@string/match_status" />
 
         <TextView
+            android:id="@+id/matchDateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/match_date"/>
+            android:text="@string/match_date" />
 
     </LinearLayout>
 

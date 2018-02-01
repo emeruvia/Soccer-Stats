@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -38,17 +39,43 @@ public class FixturesRecyclerAdapter extends
     @Override
     public void onBindViewHolder(FixturesViewHolder holder, int position) {
 
+        holder.matchDayTextView.setText("Match Day: " + fixturesDataList.get(position).getMatchday());
+        holder.homeTeamTextView.setText(fixturesDataList.get(position).getHomeTeamName());
+        holder.awayTeamTextView.setText(fixturesDataList.get(position).getAwayTeamName());
+        holder.homeGoalsTextView.setText(fixturesDataList.get(position).getResult()[0]);
+        holder.awayGoalsTextView.setText(fixturesDataList.get(position).getResult()[1]);
+        holder.matchStatusTextView.setText("Status: " + fixturesDataList.get(position).getStatus());
+        holder.matchDateTextView.setText("Date: " + fixturesDataList.get(position).getDate());
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return fixturesDataList.size();
     }
 
     public class FixturesViewHolder extends RecyclerView.ViewHolder {
 
+        TextView matchDayTextView;
+        TextView homeTeamTextView;
+        TextView awayTeamTextView;
+        TextView homeGoalsTextView;
+        TextView awayGoalsTextView;
+        TextView matchStatusTextView;
+        TextView matchDateTextView;
+
         public FixturesViewHolder(View itemView) {
             super(itemView);
+
+            matchDayTextView = itemView.findViewById(R.id.matchDayTextView);
+            homeTeamTextView = itemView.findViewById(R.id.homeTeamTextView);
+            awayTeamTextView = itemView.findViewById(R.id.awayTeamTextView);
+            homeGoalsTextView = itemView.findViewById(R.id.homeGoalsTextView);
+            awayGoalsTextView = itemView.findViewById(R.id.awayGoalsTextView);
+            matchStatusTextView = itemView.findViewById(R.id.matchStatusTextView);
+            matchDateTextView = itemView.findViewById(R.id.matchDateTextView);
+
+
         }
     }
 
