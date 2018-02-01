@@ -20,6 +20,13 @@
     <string name="team_code">Team Code</string>
     <string name="image_description">Team\'s Crest</string>
 
-
+    <!--Resources for matches list cardview -->
+    <string name="match_number">Match: #</string>
+    <string name="HOME_TEAM">HOME</string>
+    <string name="AWAY_TEAM">AWAY</string>
+    <string name="home_goals">0</string>
+    <string name="away_goals">0</string>
+    <string name="match_status">Status: </string>
+    <string name="match_date">Date: </string>
 
 </resources>
