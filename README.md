@@ -8,6 +8,6 @@ This application was great for a learning experience, in the week that I've work
 * JSON File Parsing
 * API requests
 * Intents
-and most importantly learned to read the Documentation, honestly, I spend way too many hours reading through the API extensive documentation.
+* And most importantly learned to read the Documentation, honestly, I spend way too many hours reading through the API extensive documentation.
 ## Acknowledgments
 Thanks to the open API library "http://www.football-data.org/"
