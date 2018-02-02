@@ -138,44 +138,14 @@ public class Fixtures extends AppCompatActivity {
                     String matchday = jsonParsed.getString("matchday");
                     String homeTeamName = jsonParsed.getString("homeTeamName");
                     String awayTeamName = jsonParsed.getString("awayTeamName");
-//                    String resultGame = jsonParsed.getString("result");
-//                    int[] goalsArray = {0,0};
+                    String resultGame = jsonParsed.getString("result");
 
-//                    JSONArray arrayResult = jsonParsed.getJSONArray(resultGame);
-//                    JSONObject jsonResultParsed = arrayResult.getJSONObject(i);
-//
-//                    String goalsHomeTeam = jsonResultParsed.getString("goalsHomeTeam");
-//                    String goalsAwayTeam = jsonResultParsed.getString("goalsAwayTeam");
 
-//                    goalsArray[0] = Integer.valueOf(goalsHomeTeam);
-//                    goalsArray[1] = Integer.valueOf(goalsAwayTeam);
-//
-//
                     fixturesData = new FixturesData(date, status, Integer.valueOf(matchday),
                             homeTeamName, awayTeamName);
 
                     fixturesDataList.add(fixturesData);
 
-
-//
-//
-//
-//                    String captionData = jsonObject.getString("caption");
-//                    String leagueData = jsonObject.getString("league");
-//                    String yearData = jsonObject.getString("year");
-//                    String currentDayData = jsonObject.getString("currentMatchday");
-//                    String totalDaysData = jsonObject.getString("numberOfMatchdays");
-//                    String numOfTeamsData = jsonObject.getString("numberOfTeams");
-//                    String numOfGamesData = jsonObject.getString("numberOfGames");
-//                    String lastUpdateData = jsonObject.getString("lastUpdated");
-
-//                    soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
-//                            yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
-//                            Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
-//                            lastUpdateData);
-//
-//
-//                    soccerDataList.add(soccerData);
                 }
 
             } catch (JSONException e) {

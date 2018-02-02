@@ -1,5 +1,6 @@
 package emg.soccerstats.recycler_views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,14 +37,13 @@ public class FixturesRecyclerAdapter extends
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(FixturesViewHolder holder, int position) {
 
         holder.matchDayTextView.setText("Match Day: " + fixturesDataList.get(position).getMatchday());
         holder.homeTeamTextView.setText(fixturesDataList.get(position).getHomeTeamName());
         holder.awayTeamTextView.setText(fixturesDataList.get(position).getAwayTeamName());
-//        holder.homeGoalsTextView.setText(fixturesDataList.get(position).getResult()[0]);
-//        holder.awayGoalsTextView.setText(fixturesDataList.get(position).getResult()[1]);
         holder.matchStatusTextView.setText("Status: " + fixturesDataList.get(position).getStatus());
         holder.matchDateTextView.setText("Date: " + fixturesDataList.get(position).getDate());
 

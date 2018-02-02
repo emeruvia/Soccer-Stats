@@ -24,8 +24,8 @@
     <string name="match_number">Match Day: #</string>
     <string name="HOME_TEAM">HOME</string>
     <string name="AWAY_TEAM">AWAY</string>
-    <string name="home_goals">0</string>
-    <string name="away_goals">0</string>
+    <string name="home_goals">-</string>
+    <string name="away_goals">-</string>
     <string name="match_status">Status: </string>
     <string name="match_date">Date: </string>
 

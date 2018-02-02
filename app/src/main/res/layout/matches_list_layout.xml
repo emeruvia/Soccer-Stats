@@ -27,7 +27,7 @@
                 android:layout_weight="1"
                 android:text="@string/HOME_TEAM"
                 android:textAlignment="center"
-                android:textSize="12sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/awayTeamTextView"
@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:text="@string/AWAY_TEAM"
                 android:textAlignment="center"
-                android:textSize="12sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
