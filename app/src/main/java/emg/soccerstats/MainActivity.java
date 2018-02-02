@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
 
     @Override
     public void itemClicked(View view, int position) {
-        Intent intent = new Intent(this, Teams.class);
+        Intent intent = new Intent(this, Fixtures.class);
         Log.d("IdTest", String.valueOf(idList.get(position)));
         intent.putExtra("id", idList.get(position));
         startActivity(intent);

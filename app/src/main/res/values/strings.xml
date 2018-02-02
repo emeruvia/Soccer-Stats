@@ -13,7 +13,7 @@
 
     <!--Resources for teams activity -->
     <string name="error_id">Error getting the ID</string>
-    
+
     <!--Resources for teams list cardview -->
     <string name="team_number">Team: #</string>
     <string name="team_name">Team Name</string>
