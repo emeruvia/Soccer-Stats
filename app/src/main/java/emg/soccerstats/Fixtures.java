@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import emg.soccerstats.data_objects.FixturesData;
-import emg.soccerstats.data_objects.ResultsData;
 import emg.soccerstats.recycler_views.FixturesRecyclerAdapter;
 
 public class Fixtures extends AppCompatActivity {
@@ -33,7 +32,6 @@ public class Fixtures extends AppCompatActivity {
     private int id;
     private TextView idErrorTextView;
     private FixturesData fixturesData;
-    private ResultsData resultsData;
     private List<FixturesData> fixturesDataList;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -128,7 +126,6 @@ public class Fixtures extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 String fixtures = jsonObject.getString("fixtures");
                 JSONArray jsonArray = new JSONArray(fixtures);
-//                Log.i("JsonParsed", fixtures);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonParsed = jsonArray.getJSONObject(i);
 
@@ -144,11 +141,14 @@ public class Fixtures extends AppCompatActivity {
                     String goalsHomeTeam = resultsObject.getString("goalsHomeTeam");
                     String goalsAwayTeam = resultsObject.getString("goalsAwayTeam");
 
+                    if (goalsHomeTeam == (null)) {
+                        goalsHomeTeam = "-";
+                    }
+                    if (goalsAwayTeam == (null)) {
+                        goalsAwayTeam = "-";
+                    }
+
                     Log.i("work plz", goalsAwayTeam + "\t" + goalsHomeTeam);
-//                    resultsData = new ResultsData(Integer.valueOf(goalsHomeTeam),
-//                            Integer.valueOf(goalsAwayTeam));
-
-
 
                     fixturesData = new FixturesData(date, status, Integer.valueOf(matchday),
                             homeTeamName, awayTeamName, goalsHomeTeam, goalsAwayTeam);
@@ -156,8 +156,6 @@ public class Fixtures extends AppCompatActivity {
                     fixturesDataList.add(fixturesData);
 
                 }
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

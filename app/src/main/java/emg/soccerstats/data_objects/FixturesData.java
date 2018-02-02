@@ -11,7 +11,6 @@ public class FixturesData {
     private int matchday;
     private String homeTeamName;
     private String awayTeamName;
-    private ResultsData resultsData;
     private String homeGoals;
     private String awayGoals;
 
@@ -54,7 +53,4 @@ public class FixturesData {
         return awayGoals;
     }
 
-    public ResultsData getResultsData() {
-        return resultsData;
-    }
 }
