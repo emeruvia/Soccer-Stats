@@ -33,6 +33,7 @@ public class Fixtures extends AppCompatActivity {
 
     private int id;
     private TextView idErrorTextView;
+    private FixturesData fixturesData;
     private List<FixturesData> fixturesDataList;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -49,7 +50,7 @@ public class Fixtures extends AppCompatActivity {
         fixturesDataList = new ArrayList<>();
 
         Intent intent = getIntent();
-        id= intent.getIntExtra("id", 0);
+        id = intent.getIntExtra("id", 0);
         if (id != 0) {
             Log.i("id_value", String.valueOf(id));
 
@@ -127,14 +128,35 @@ public class Fixtures extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 String fixtures = jsonObject.getString("fixtures");
                 JSONArray jsonArray = new JSONArray(fixtures);
-                Log.i("JsonParsed", fixtures);
+//                Log.i("JsonParsed", fixtures);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonParsed = jsonArray.getJSONObject(i);
 
+                    //gets the value of the string
+                    String date = jsonParsed.getString("date");
+                    String status = jsonParsed.getString("status");
+                    String matchday = jsonParsed.getString("matchday");
+                    String homeTeamName = jsonParsed.getString("homeTeamName");
+                    String awayTeamName = jsonParsed.getString("awayTeamName");
+//                    String resultGame = jsonParsed.getString("result");
+//                    int[] goalsArray = {0,0};
 
-//                    JSONObject jsonParse = jsonArray.getJSONObject(i);
+//                    JSONArray arrayResult = jsonParsed.getJSONArray(resultGame);
+//                    JSONObject jsonResultParsed = arrayResult.getJSONObject(i);
 //
-//                    //gets the value of the string
+//                    String goalsHomeTeam = jsonResultParsed.getString("goalsHomeTeam");
+//                    String goalsAwayTeam = jsonResultParsed.getString("goalsAwayTeam");
+
+//                    goalsArray[0] = Integer.valueOf(goalsHomeTeam);
+//                    goalsArray[1] = Integer.valueOf(goalsAwayTeam);
+//
+//
+                    fixturesData = new FixturesData(date, status, Integer.valueOf(matchday),
+                            homeTeamName, awayTeamName);
+
+                    fixturesDataList.add(fixturesData);
+
+
 //
 //
 //

@@ -42,8 +42,8 @@ public class FixturesRecyclerAdapter extends
         holder.matchDayTextView.setText("Match Day: " + fixturesDataList.get(position).getMatchday());
         holder.homeTeamTextView.setText(fixturesDataList.get(position).getHomeTeamName());
         holder.awayTeamTextView.setText(fixturesDataList.get(position).getAwayTeamName());
-        holder.homeGoalsTextView.setText(fixturesDataList.get(position).getResult()[0]);
-        holder.awayGoalsTextView.setText(fixturesDataList.get(position).getResult()[1]);
+//        holder.homeGoalsTextView.setText(fixturesDataList.get(position).getResult()[0]);
+//        holder.awayGoalsTextView.setText(fixturesDataList.get(position).getResult()[1]);
         holder.matchStatusTextView.setText("Status: " + fixturesDataList.get(position).getStatus());
         holder.matchDateTextView.setText("Date: " + fixturesDataList.get(position).getDate());
 

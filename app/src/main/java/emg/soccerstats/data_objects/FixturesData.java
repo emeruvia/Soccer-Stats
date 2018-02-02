@@ -14,13 +14,12 @@ public class FixturesData {
     private int[] result;
 
     public FixturesData(String date, String status, int matchday, String homeTeamName,
-                        String awayTeamName, int[] result) {
+                        String awayTeamName) {
         this.date = date;
         this.status = status;
         this.matchday = matchday;
         this.homeTeamName = homeTeamName;
         this.awayTeamName = awayTeamName;
-        this.result = result;
     }
 
     public String getDate() {
