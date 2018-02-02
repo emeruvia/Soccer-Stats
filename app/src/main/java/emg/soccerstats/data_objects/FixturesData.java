@@ -11,14 +11,19 @@ public class FixturesData {
     private int matchday;
     private String homeTeamName;
     private String awayTeamName;
+    private ResultsData resultsData;
+    private String homeGoals;
+    private String awayGoals;
 
     public FixturesData(String date, String status, int matchday, String homeTeamName,
-                        String awayTeamName) {
+                        String awayTeamName, String homeGoals, String awayGoals) {
         this.date = date;
         this.status = status;
         this.matchday = matchday;
         this.homeTeamName = homeTeamName;
         this.awayTeamName = awayTeamName;
+        this.homeGoals = homeGoals;
+        this.awayGoals = awayGoals;
     }
 
     public String getDate() {
@@ -41,4 +46,15 @@ public class FixturesData {
         return awayTeamName;
     }
 
+    public String getHomeGoals() {
+        return homeGoals;
+    }
+
+    public String getAwayGoals() {
+        return awayGoals;
+    }
+
+    public ResultsData getResultsData() {
+        return resultsData;
+    }
 }

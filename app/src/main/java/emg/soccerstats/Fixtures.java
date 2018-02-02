@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import emg.soccerstats.data_objects.FixturesData;
-import emg.soccerstats.data_objects.SoccerData;
+import emg.soccerstats.data_objects.ResultsData;
 import emg.soccerstats.recycler_views.FixturesRecyclerAdapter;
 
 public class Fixtures extends AppCompatActivity {
@@ -34,6 +33,7 @@ public class Fixtures extends AppCompatActivity {
     private int id;
     private TextView idErrorTextView;
     private FixturesData fixturesData;
+    private ResultsData resultsData;
     private List<FixturesData> fixturesDataList;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -140,13 +140,23 @@ public class Fixtures extends AppCompatActivity {
                     String awayTeamName = jsonParsed.getString("awayTeamName");
                     String resultGame = jsonParsed.getString("result");
 
+                    JSONObject resultsObject = new JSONObject(jsonParsed.getString("result"));
+                    String goalsHomeTeam = resultsObject.getString("goalsHomeTeam");
+                    String goalsAwayTeam = resultsObject.getString("goalsAwayTeam");
+
+                    Log.i("work plz", goalsAwayTeam + "\t" + goalsHomeTeam);
+//                    resultsData = new ResultsData(Integer.valueOf(goalsHomeTeam),
+//                            Integer.valueOf(goalsAwayTeam));
+
+
 
                     fixturesData = new FixturesData(date, status, Integer.valueOf(matchday),
-                            homeTeamName, awayTeamName);
+                            homeTeamName, awayTeamName, goalsHomeTeam, goalsAwayTeam);
 
                     fixturesDataList.add(fixturesData);
 
                 }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
