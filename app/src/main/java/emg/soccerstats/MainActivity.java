@@ -27,133 +27,130 @@ import java.util.List;
 import emg.soccerstats.data_objects.SoccerData;
 import emg.soccerstats.recycler_views.CompetitionRecyclerAdapter;
 
-public class MainActivity extends AppCompatActivity implements CompetitionRecyclerAdapter.ClickListener {
+public class MainActivity extends AppCompatActivity
+    implements CompetitionRecyclerAdapter.ClickListener {
 
-    private SoccerData soccerData;
-    private List<SoccerData> soccerDataList;
-    private List<Integer> idList;
+  private SoccerData soccerData;
+  private List<SoccerData> soccerDataList;
+  private List<Integer> idList;
 
-    private ProgressBar progressBar;
-    private RecyclerView recyclerView;
-    private TextView errorTextView;
+  private ProgressBar progressBar;
+  private RecyclerView recyclerView;
+  private TextView errorTextView;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    progressBar = findViewById(R.id.progress_bar);
+    recyclerView = findViewById(R.id.recyclerViewId);
+    errorTextView = findViewById(R.id.error_textview);
+
+    soccerDataList = new ArrayList<>();
+    idList = new ArrayList<>();
+
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    recyclerView.setLayoutManager(layoutManager);
+
+    CompetitionRecyclerAdapter viewAdapter =
+        new CompetitionRecyclerAdapter(soccerDataList);
+    viewAdapter.setClickListener(this);
+    recyclerView.setAdapter(viewAdapter);
+
+    loadAPIData();
+  }
+
+  @Override
+  public void itemClicked(View view, int position) {
+    Intent intent = new Intent(this, Fixtures.class);
+    Log.d("IdTest", String.valueOf(idList.get(position)));
+    intent.putExtra("id", idList.get(position));
+    startActivity(intent);
+  }
+
+  public void loadAPIData() {
+
+    //        try {
+    //            new FetchAPIDataTask().execute("http://api.football-data.org/v2/competitions");
+    //        } catch (NullPointerException e) {
+    //            errorTextView.setText("API Error call");
+    //            errorTextView.setVisibility(View.VISIBLE);
+    //            e.printStackTrace();
+    //        }
+
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  public class FetchAPIDataTask extends AsyncTask<String, Void, String> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        progressBar = findViewById(R.id.progress_bar);
-        recyclerView = findViewById(R.id.recyclerViewId);
-        errorTextView = findViewById(R.id.error_textview);
-
-        soccerDataList = new ArrayList<>();
-        idList = new ArrayList<>();
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        CompetitionRecyclerAdapter viewAdapter =
-                new CompetitionRecyclerAdapter(soccerDataList);
-        viewAdapter.setClickListener(this);
-        recyclerView.setAdapter(viewAdapter);
-
-        loadAPIData();
-
+    protected void onPreExecute() {
+      super.onPreExecute();
+      progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void itemClicked(View view, int position) {
-        Intent intent = new Intent(this, Fixtures.class);
-        Log.d("IdTest", String.valueOf(idList.get(position)));
-        intent.putExtra("id", idList.get(position));
-        startActivity(intent);
+    protected String doInBackground(String... strings) {
+      StringBuilder result = new StringBuilder();
+      URL url;
+      HttpURLConnection urlConnection;
+
+      try {
+        url = new URL(strings[0]);
+        urlConnection = (HttpURLConnection) url.openConnection();
+        InputStream inputStream = urlConnection.getInputStream();
+        InputStreamReader reader = new InputStreamReader(inputStream);
+
+        int data = reader.read();
+
+        while (data != -1) {
+          char current = (char) data;
+          result.append(current);
+          data = reader.read();
+        }
+        return result.toString();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return null;
     }
 
-    public void loadAPIData() {
+    @Override
+    protected void onPostExecute(String result) {
+      super.onPostExecute(result);
+      progressBar.setVisibility(View.GONE);
+      recyclerView.setVisibility(View.VISIBLE);
 
-        try {
-            new FetchAPIDataTask().execute("http://api.football-data.org/v2/competitions");
-        } catch (NullPointerException e) {
-            errorTextView.setText("API Error call");
-            errorTextView.setVisibility(View.VISIBLE);
-            e.printStackTrace();
+      try {
+        JSONArray jsonArray = new JSONArray(result);
+        for (int i = 0; i < jsonArray.length(); i++) {
+          JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+          //gets the value of the string
+          String idData = jsonObject.getString("id");
+          String captionData = jsonObject.getString("caption");
+          String leagueData = jsonObject.getString("league");
+          String yearData = jsonObject.getString("year");
+          String currentDayData = jsonObject.getString("currentMatchday");
+          String totalDaysData = jsonObject.getString("numberOfMatchdays");
+          String numOfTeamsData = jsonObject.getString("numberOfTeams");
+          String numOfGamesData = jsonObject.getString("numberOfGames");
+          String lastUpdateData = jsonObject.getString("lastUpdated");
+
+          soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
+              yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
+              Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
+              lastUpdateData);
+
+          idList.add(Integer.valueOf(idData));
+
+          soccerDataList.add(soccerData);
         }
-
+      } catch (JSONException e) {
+        Log.i("JSON", "Failed");
+        e.printStackTrace();
+      }
     }
-
-    @SuppressLint("StaticFieldLeak")
-    public class FetchAPIDataTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            StringBuilder result = new StringBuilder();
-            URL url;
-            HttpURLConnection urlConnection;
-
-            try {
-                url = new URL(strings[0]);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = urlConnection.getInputStream();
-                InputStreamReader reader = new InputStreamReader(inputStream);
-
-                int data = reader.read();
-
-                while (data != -1) {
-                    char current = (char) data;
-                    result.append(current);
-                    data = reader.read();
-                }
-                return result.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            progressBar.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    //gets the value of the string
-                    String idData = jsonObject.getString("id");
-                    String captionData = jsonObject.getString("caption");
-                    String leagueData = jsonObject.getString("league");
-                    String yearData = jsonObject.getString("year");
-                    String currentDayData = jsonObject.getString("currentMatchday");
-                    String totalDaysData = jsonObject.getString("numberOfMatchdays");
-                    String numOfTeamsData = jsonObject.getString("numberOfTeams");
-                    String numOfGamesData = jsonObject.getString("numberOfGames");
-                    String lastUpdateData = jsonObject.getString("lastUpdated");
-
-                    soccerData = new SoccerData(Integer.valueOf(idData), captionData, leagueData,
-                            yearData, Integer.valueOf(currentDayData), Integer.valueOf(totalDaysData),
-                            Integer.valueOf(numOfTeamsData), Integer.valueOf(numOfGamesData),
-                            lastUpdateData);
-
-                    idList.add(Integer.valueOf(idData));
-
-                    soccerDataList.add(soccerData);
-                }
-
-            } catch (JSONException e) {
-                Log.i("JSON", "Failed");
-                e.printStackTrace();
-            }
-        }
-    }
-
+  }
 }
