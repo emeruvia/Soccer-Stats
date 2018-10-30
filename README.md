@@ -1,3 +1,5 @@
+# Old Version
+API architecture has been updated, this branch is being kept to showcase the original project
 # Soccer-stats
 This is a quick android application that I have been working on as an assignment for a job interview.
 ## Assignment
