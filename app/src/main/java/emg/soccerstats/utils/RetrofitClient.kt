@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClient {
   private var retrofit: Retrofit? = null
 
-  fun buildClient(baseUrl: String): Retrofit {
+  fun buildClient(): Retrofit {
     if (retrofit == null) {
       retrofit = Retrofit.Builder()
           .baseUrl(baseUrl)

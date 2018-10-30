@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import android.widget.Toast;
+import emg.soccerstats.interfaces.RetrofitService;
+import emg.soccerstats.models.CompetitionsModel;
+import emg.soccerstats.utils.RetrofitClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +30,10 @@ import java.util.List;
 
 import emg.soccerstats.data_objects.SoccerData;
 import emg.soccerstats.recycler_views.CompetitionRecyclerAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
     implements CompetitionRecyclerAdapter.ClickListener {
@@ -70,6 +78,28 @@ public class MainActivity extends AppCompatActivity
   }
 
   public void loadAPIData() {
+    //testing retrofit connectivity
+    Retrofit retrofit =
+        new RetrofitClient().buildClient();
+    RetrofitService service = retrofit.create(RetrofitService.class);
+    Call<CompetitionsModel> call =
+        service.competitionsService(getResources().getString(R.string.api_key));
+    //Call<CompetitionsModel> call =
+    //    service.competitionsService();
+    call.enqueue(new Callback<CompetitionsModel>() {
+      @Override
+      public void onResponse(Call<CompetitionsModel> call, Response<CompetitionsModel> response) {
+        Toast.makeText(getApplicationContext(), "Got data swag", Toast.LENGTH_SHORT).show();
+        CompetitionsModel test = response.body();
+        assert test != null;
+        System.out.println(test.getCount());
+        System.out.println(test.getCompetitions().get(0).getName());
+      }
 
+      @Override public void onFailure(Call<CompetitionsModel> call, Throwable t) {
+        Log.d("onFailure", t.getMessage());
+        Toast.makeText(getApplicationContext(), "Failed to get data", Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 }
