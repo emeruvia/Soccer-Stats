@@ -76,32 +76,36 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
   }
 
   fun loadAPIData() {
-    //testing retrofit connectivity
     val retrofit = RetrofitClient().buildClient()
     val service = retrofit.create(RetrofitService::class.java)
-    val call = service.competitionsService(resources.getString(R.string.api_key))
-    //Call<CompetitionsModel> call =
-    //    service.competitionsService();
-    call.enqueue(object : Callback<CompetitionsModel> {
+    val call =
+      service!!.competitionsService(resources.getString(R.string.api_key))
+    call.enqueue(object: Callback<CompetitionsModel>{
       override fun onResponse(
         call: Call<CompetitionsModel>,
         response: Response<CompetitionsModel>
       ) {
-        Toast.makeText(applicationContext, "Got data swag", Toast.LENGTH_SHORT)
-            .show()
-        val (count, competitions) = response.body()!!
-        println(count)
-        println(competitions[0].name)
+        val test: CompetitionsModel? = response.body()
+        if (test != null) {
+          Log.d("onResponse", "Successfully connected to the API")
+          Log.d("onResponse", response.message())
+          Log.d("onResponse", response.body().toString())
+          Log.d("onResponse", response.isSuccessful.toString())
+          Log.d("onResponse", response.headers().toString())
+          Log.d("onResponse", response.raw().toString())
+
+        }
       }
 
       override fun onFailure(
         call: Call<CompetitionsModel>,
         t: Throwable
       ) {
+        Log.d("onFailure", t.printStackTrace().toString())
+        Log.d("onFailure", "Failure to connect to API")
         Log.d("onFailure", t.message)
-        Toast.makeText(applicationContext, "Failed to get data", Toast.LENGTH_SHORT)
-            .show()
       }
+
     })
   }
 }

@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitService {
-  @GET("/V2/competitions")
+  @GET("/v2/competitions")
   fun competitionsService(
     @Query("X-Auth-Token") authToken: String
   ): Call<CompetitionsModel>
