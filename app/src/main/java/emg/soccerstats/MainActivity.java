@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
     public void loadAPIData() {
 
         try {
-            new FetchAPIDataTask().execute("http://www.football-data.org/v1/competitions");
+            new FetchAPIDataTask().execute("http://api.football-data.org/v2/competitions");
         } catch (NullPointerException e) {
             errorTextView.setText("API Error call");
             errorTextView.setVisibility(View.VISIBLE);
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements CompetitionRecycl
                 }
 
             } catch (JSONException e) {
+                Log.i("JSON", "Failed");
                 e.printStackTrace();
             }
         }
