@@ -13,7 +13,7 @@
       android:layout_above="@id/progress_bar"
       android:layout_centerHorizontal="true"
       android:textSize="40sp"
-      android:visibility="visible"
+      android:visibility="gone"
       />
   <ProgressBar
       android:id="@+id/progress_bar"
@@ -31,7 +31,6 @@
       android:layout_below="@id/progress_bar"
       android:layout_margin="5dp"
       android:padding="5dp"
-      android:visibility="gone"
       >
 
   </android.support.v7.widget.RecyclerView>
