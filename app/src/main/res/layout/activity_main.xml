@@ -31,8 +31,6 @@
       android:layout_below="@id/progress_bar"
       android:layout_margin="5dp"
       android:padding="5dp"
-      >
-
-  </android.support.v7.widget.RecyclerView>
+      />
 
 </RelativeLayout>

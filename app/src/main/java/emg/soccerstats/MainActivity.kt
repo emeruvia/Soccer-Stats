@@ -14,16 +14,14 @@ import emg.soccerstats.interfaces.RetrofitService
 import emg.soccerstats.models.CompetitionsModel
 import emg.soccerstats.utils.RetrofitClient
 
-import emg.soccerstats.data_objects.SoccerData
+import emg.soccerstats.interfaces.ClickListener
 import emg.soccerstats.models.CompetitionModel
-import emg.soccerstats.recycler_views.CompetitionRecyclerAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListener {
+class MainActivity : AppCompatActivity(), ClickListener {
 
-  private val soccerData: SoccerData? = null
   private lateinit var competitionsList: List<CompetitionModel>
 
   private var progressBar: ProgressBar? = null
@@ -39,14 +37,10 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
     errorTextView = findViewById(R.id.error_textview)
 
     competitionsList = ArrayList()
-
+    loadAPIData()
     val layoutManager = LinearLayoutManager(this)
     recyclerView!!.layoutManager = layoutManager
 
-    val viewAdapter = CompetitionsAdapter(competitionsList)
-    recyclerView!!.adapter = viewAdapter
-
-    loadAPIData()
   }
 
   fun loadAPIData() {
@@ -71,7 +65,10 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
           Log.d("onResponse", response.headers().toString())
           Log.d("onResponse", response.raw().toString())
           val competitions = response.body()
-          competitionsList = competitions!!.competitions
+          competitionsList = competitions!!.competitions!!
+          competitionsList.forEach { i -> println(i.toString()) }
+          recyclerView!!.visibility = View.VISIBLE
+          recyclerView!!.adapter = CompetitionsAdapter(competitionsList)
         }
       }
 
@@ -85,16 +82,16 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
         progressBar!!.visibility = View.GONE
         errorTextView!!.text = "Network Error, try again later"
       }
-
     })
   }
 
   override fun itemClicked(
-    view: View?,
+    view: View,
     position: Int
   ) {
     TODO(
         "not implemented"
     ) //To change body of created functions use File | Settings | File Templates.
   }
+
 }
