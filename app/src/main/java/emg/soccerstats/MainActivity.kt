@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
   }
 
   fun loadAPIData() {
+    progressBar!!.visibility = View.VISIBLE
     val retrofit = RetrofitClient().buildClient()
     val service = retrofit.create(RetrofitService::class.java)
     val call =
@@ -87,6 +88,8 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
       ) {
         val test: CompetitionsModel? = response.body()
         if (test != null) {
+          progressBar!!.visibility = View.GONE
+          errorTextView!!.text = "Data fetched"
           Log.d("onResponse", "Successfully connected to the API")
           Log.d("onResponse", response.message())
           Log.d("onResponse", response.body().toString())
@@ -104,6 +107,8 @@ class MainActivity : AppCompatActivity(), CompetitionRecyclerAdapter.ClickListen
         Log.d("onFailure", t.printStackTrace().toString())
         Log.d("onFailure", "Failure to connect to API")
         Log.d("onFailure", t.message)
+        progressBar!!.visibility = View.GONE
+        errorTextView!!.text = "Network Error, try again later"
       }
 
     })
