@@ -9,11 +9,9 @@ import retrofit2.http.Query;
  * Created by emeruvia on 5/22/2019.
  */
 public interface FootballDataApi {
-
   // Competitions Request
   @GET("/v2/competitions")
-  Call<CompetitionsResponse> competitions(
+  Call<CompetitionsResponse> requestCompetitions(
       @Query("X-Auth-Token") String authToken
   );
-
 }
