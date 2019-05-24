@@ -29,8 +29,8 @@ public class CompetitionsRepository {
   }
 
   // TODO simple method returns list of competitions
-  public void getCompetitionsApi() {
-    mFootballApiClient.getCompetitionsApi();
+  public void requestCompetitionsApi() {
+    mFootballApiClient.requestCompetitionsApi();
   }
 
 }
