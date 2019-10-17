@@ -1,1 +1,1 @@
-include ':app', ':mvvm_java'
+include ':app'
