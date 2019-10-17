@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Soccer-Stats.iml" filepath="$PROJECT_DIR$/.idea/Soccer-Stats.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Soccer-Stats.iml" filepath="$PROJECT_DIR$/Soccer-Stats.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvm_java/mvvm_java.iml" filepath="$PROJECT_DIR$/mvvm_java/mvvm_java.iml" />
     </modules>
