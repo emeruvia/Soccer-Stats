@@ -1,13 +1,14 @@
 # Soccer-stats
-This is a quick android application that I have been working on as an assignment for a job interview.
-## Assignment
-The assignment was to create a sports score mobile application using an API
-## Learning Experience
-This application was great for a learning experience, in the week that I've worked on it I managed to learn more about:
-* RecyclerView
-* JSON File Parsing
-* API requests
-* Intents
-* And most importantly, learned to read the Documentation, honestly, I spend way too many hours reading through the API extensive documentation.
+Native Android application that serves as an API client for displaying
+a curated list of soccer competitions.
+
+## Architecture Patterns
+> [Version 1.0](https://github.com/emeruvia/Soccer-Stats/tree/API-v1): provides the most basic implementation of the application, written in Java and AsyncTasks
+
+> [Version 2.0](https://github.com/emeruvia/Soccer-Stats/tree/API-V2): Updated application, Java -> Kotlin, use retrofit instead of AsyncTasks, minor UI updates.
+
+> Version 3.0 (WIP): Kotlin, MVVM architecture, Coroutines, Retrofit, etc.
+
+
 ## Acknowledgments
 Thanks to the open API library "http://www.football-data.org/"
