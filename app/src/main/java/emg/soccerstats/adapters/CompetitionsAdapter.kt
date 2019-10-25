@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import emg.soccerstats.R
 import emg.soccerstats.interfaces.ClickListener
-import emg.soccerstats.models.CompetitionModel
+import emg.soccerstats.models.Competition
 
-class CompetitionsAdapter(competitionsList: List<CompetitionModel>) :
+class CompetitionsAdapter(competitionsList: List<Competition>) :
     RecyclerView.Adapter<CompetitionsAdapter.CompetitionsViewHolder>() {
 
-  private var competitionsList: List<CompetitionModel> = competitionsList
+  private var competitionsList: List<Competition> = competitionsList
   lateinit var clickListener: ClickListener
 
   override fun onCreateViewHolder(

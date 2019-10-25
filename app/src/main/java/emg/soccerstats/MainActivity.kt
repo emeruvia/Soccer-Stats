@@ -1,7 +1,6 @@
 package emg.soccerstats
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -15,9 +14,8 @@ import emg.soccerstats.models.CompetitionsModel
 import emg.soccerstats.utils.RetrofitClient
 
 import emg.soccerstats.interfaces.ClickListener
-import emg.soccerstats.models.CompetitionModel
+import emg.soccerstats.models.Competition
 import emg.soccerstats.utils.Secrets
-import emg.soccerstats.utils.Secrets.Companion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +23,7 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), ClickListener {
 
-  private lateinit var competitionsList: List<CompetitionModel>
+  private lateinit var competitionsList: List<Competition>
 
   private var progressBar: ProgressBar? = null
   private var recyclerView: RecyclerView? = null

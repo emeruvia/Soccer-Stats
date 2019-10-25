@@ -2,7 +2,7 @@ package emg.soccerstats.models
 
 import com.google.gson.annotations.SerializedName
 
-data class CompetitionModel(
+data class Competition(
   val id: Int,
   val name: String?,
   val plan: String?,
