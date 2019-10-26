@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import emg.soccerstats.R
 import emg.soccerstats.interfaces.ClickListener
-import emg.soccerstats.models.CompetitionModel
+import emg.soccerstats.models.Competition
 
-class CompetitionsAdapter(competitionsList: List<CompetitionModel>) :
+class CompetitionsAdapter(competitionsList: List<Competition>) :
     RecyclerView.Adapter<CompetitionsAdapter.CompetitionsViewHolder>() {
 
-  private var competitionsList: List<CompetitionModel> = competitionsList
+  private var competitionsList: List<Competition> = competitionsList
   lateinit var clickListener: ClickListener
 
   override fun onCreateViewHolder(
@@ -35,10 +35,10 @@ class CompetitionsAdapter(competitionsList: List<CompetitionModel>) :
     p1: Int
   ) {
     p0.nameTv.text = competitionsList.get(p1).name
-    p0.seasonTv.text = competitionsList.get(p1).currentSeason?.id.toString()
-    p0.startDateTv.text = competitionsList.get(p1).currentSeason?.startDate
-    p0.endDateTv.text = competitionsList.get(p1).currentSeason?.endDate
-    p0.currentMatchDayTv.text = competitionsList.get(p1).currentSeason?.currentMatchday.toString()
+//    p0.seasonTv.text = competitionsList.get(p1).currentSeason?.id.toString()
+//    p0.startDateTv.text = competitionsList.get(p1).currentSeason?.startDate
+//    p0.endDateTv.text = competitionsList.get(p1).currentSeason?.endDate
+//    p0.currentMatchDayTv.text = competitionsList.get(p1).currentSeason?.currentMatchday.toString()
     p0.tierTv.text = competitionsList.get(p1).plan
     p0.lastUpdateTv.text = competitionsList.get(p1).lastUpdated
   }
