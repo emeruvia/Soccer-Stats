@@ -35,10 +35,10 @@ class CompetitionsAdapter(competitionsList: List<Competition>) :
     p1: Int
   ) {
     p0.nameTv.text = competitionsList.get(p1).name
-    p0.seasonTv.text = competitionsList.get(p1).currentSeason?.id.toString()
-    p0.startDateTv.text = competitionsList.get(p1).currentSeason?.startDate
-    p0.endDateTv.text = competitionsList.get(p1).currentSeason?.endDate
-    p0.currentMatchDayTv.text = competitionsList.get(p1).currentSeason?.currentMatchday.toString()
+//    p0.seasonTv.text = competitionsList.get(p1).currentSeason?.id.toString()
+//    p0.startDateTv.text = competitionsList.get(p1).currentSeason?.startDate
+//    p0.endDateTv.text = competitionsList.get(p1).currentSeason?.endDate
+//    p0.currentMatchDayTv.text = competitionsList.get(p1).currentSeason?.currentMatchday.toString()
     p0.tierTv.text = competitionsList.get(p1).plan
     p0.lastUpdateTv.text = competitionsList.get(p1).lastUpdated
   }
