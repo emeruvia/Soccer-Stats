@@ -6,9 +6,9 @@ import timber.log.Timber.DebugTree
 
 class SoccerApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-        if (BuildConfig.DEBUG) Timber.plant(DebugTree())
-    }
+  override fun onCreate() {
+    super.onCreate()
+    if (BuildConfig.DEBUG) Timber.plant(DebugTree())
+  }
 
 }

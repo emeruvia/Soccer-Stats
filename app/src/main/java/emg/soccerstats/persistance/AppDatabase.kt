@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import emg.soccerstats.models.Competition
 
-@Database(entities = [Competition::class], version = 1)
+@Database(entities = [Competition::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
   abstract fun competitionDao(): CompetitionDao
 

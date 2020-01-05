@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
     val retrofit = RetrofitClient().buildClient()
     val service = retrofit.create(RetrofitService::class.java)
     val call =
-      service!!.competitionsService(Secrets.API_KEY)
+      service.competitionsService(Secrets.API_KEY)
     call.enqueue(object : Callback<CompetitionsModel> {
       override fun onResponse(
         call: Call<CompetitionsModel>,
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
           Timber.d("onResponse(): $response.headers().toString()")
           Timber.d("onResponse(): $response.raw().toString()")
           val competitions = response.body()
-          competitionsList = competitions!!.competitions!!
+          competitionsList = competitions!!.competitions
           competitionsList.forEach { i -> println(i.toString()) }
           recyclerView!!.visibility = View.VISIBLE
           recyclerView!!.adapter = CompetitionsAdapter(competitionsList)
