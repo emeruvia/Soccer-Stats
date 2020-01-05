@@ -15,7 +15,7 @@ import emg.soccerstats.utils.RetrofitClient
 
 import emg.soccerstats.interfaces.ClickListener
 import emg.soccerstats.models.Competition
-import emg.soccerstats.utils.Secrets
+import emg.soccerstats.utils.API_KEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
     val retrofit = RetrofitClient().buildClient()
     val service = retrofit.create(RetrofitService::class.java)
     val call =
-      service.competitionsService(Secrets.API_KEY)
+      service.competitionsService(API_KEY)
     call.enqueue(object : Callback<CompetitionsModel> {
       override fun onResponse(
         call: Call<CompetitionsModel>,
