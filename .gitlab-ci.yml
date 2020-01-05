@@ -12,7 +12,6 @@ variables:
   ANDROID_BUILD_TOOLS: "28.0.2"
   ANDROID_SDK_TOOLS: "4333796"
 
-
 before_script:
   # Installing packages
   - apt-get --quiet update --yes
@@ -34,6 +33,9 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
+  # Env variable keys
+  - echo $API_KEY
+
 stages:
   # build: makes sure the app compiles
   # test:  runs unit and functional tests
@@ -52,6 +54,8 @@ assembleDebug:
   artifacts:
     paths:
       - app/build/outputs/
+  variables:
+    API_KEY: $API_KEY
 
 # Prepares debugging
 debugTests:
