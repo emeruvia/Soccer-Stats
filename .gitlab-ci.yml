@@ -33,9 +33,6 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
-  # Env variable keys
-  - echo $API_KEY
-
 stages:
   # build: makes sure the app compiles
   # test:  runs unit and functional tests
@@ -50,15 +47,14 @@ stages:
 assembleDebug:
   stage: build
   script:
+    - "echo $API_KEY > /app/src/main/java/emg/soccerstats/utils/Secrets/API_KEY"
     - ./gradlew assembleDebug
   artifacts:
     paths:
       - app/build/outputs/
-  variables:
-    API_KEY: $API_KEY
 
 # Prepares debugging
-debugTests:
-  stage: test
-  script:
-    - ./gradlew -Pci --console=plain :app:testDebug
+#debugTests:
+#  stage: test
+#  script:
+#    - ./gradlew -Pci --console=plain :app:testDebug
