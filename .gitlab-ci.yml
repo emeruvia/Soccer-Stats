@@ -47,7 +47,7 @@ stages:
 assembleDebug:
   stage: build
   script:
-    - "echo $API_KEY > /app/src/main/java/emg/soccerstats/MainActivity.kt"
+    - "echo $API_KEY > API_KEY"
     - ./gradlew assembleDebug
   artifacts:
     paths:
