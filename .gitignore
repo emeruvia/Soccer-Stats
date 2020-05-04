@@ -85,3 +85,4 @@ lint/tmp/
 
 #Secrets class
 secrets.kt
+secrets.xml
