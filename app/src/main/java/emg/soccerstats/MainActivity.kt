@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import emg.soccerstats.adapters.CompetitionsAdapter
-import emg.soccerstats.interfaces.RetrofitService
+import emg.soccerstats.api.FootbalDataService
 import emg.soccerstats.models.CompetitionsModel
 import emg.soccerstats.utils.RetrofitClient
 
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity(), ClickListener {
   fun loadAPIData() {
     progressBar!!.visibility = View.VISIBLE
     val retrofit = RetrofitClient().buildClient()
-    val service = retrofit.create(RetrofitService::class.java)
+    val service = retrofit.create(FootbalDataService::class.java)
     val call =
-      service!!.competitionsService(Secrets.API_KEY)
+      service.competitionsService(Secrets.API_KEY)
     call.enqueue(object : Callback<CompetitionsModel> {
       override fun onResponse(
         call: Call<CompetitionsModel>,

@@ -36,7 +36,6 @@
       android:layout_height="wrap_content"
       android:layout_below="@+id/fixture_progressbar"
       android:layout_margin="5dp"
-      android:background="@color/colorAccent"
       android:padding="5dp"
       android:visibility="gone"
       />

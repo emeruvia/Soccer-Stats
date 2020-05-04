@@ -1,0 +1,8 @@
+<resources>
+
+  <!-- app palette -->
+  <color name="primary">#64B5F6</color> <!-- Blue 300 -->
+  <color name="secondary">#FFCC80</color> <!-- Orange 200 -->
+  <color name="error">#Ef9A9A</color> <!-- Red 200 -->
+
+</resources>
