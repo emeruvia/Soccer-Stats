@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Soccer Stats</string>
+    <string name="app_name">Futbal statistitcas</string>
     <!--Resources for list layout-->
-    <string name="caption">Caption: </string>
-    <string name="soccer_league">League: </string>
-    <string name="year_played">Year: </string>
-    <string name="current_day">Day: </string>
-    <string name="total_days">Total Days: </string>
-    <string name="total_teams">Total teams: </string>
-    <string name="total_matches">Total Matches: </string>
+    <string name="caption">caption</string>
+    <string name="soccer_league">Liga:</string>
+    <string name="year_played">anho</string>
+    <string name="current_day">Dia:</string>
+    <string name="total_days">Dias totales:</string>
+    <string name="total_teams">Equipos Totales:</string>
+    <string name="total_matches">Juegos totales:</string>
     <string name="teams_playing">Teams</string>
     <!--Resources for teams activity -->
     <string name="error_id">Error getting the ID</string>
