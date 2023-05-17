@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Soccer Stats</string>
+    <!--Resources for list layout-->
+    <string name="caption">Caption: </string>
+    <string name="soccer_league">League: </string>
+    <string name="year_played">Year: </string>
+    <string name="current_day">Day: </string>
+    <string name="total_days">Total Days: </string>
+    <string name="total_teams">Total teams: </string>
+    <string name="total_matches">Total Matches: </string>
+    <string name="teams_playing">Teams</string>
+    <!--Resources for teams activity -->
+    <string name="error_id">Error getting the ID</string>
+    <!--Resources for teams list cardview -->
+    <string name="team_number">Team: #</string>
+    <string name="team_name">Team Name</string>
+    <string name="team_code">Team Code</string>
+    <string name="image_description">Team\'s Crest</string>
+    <!--Resources for matches list cardview -->
+    <string name="match_number">Match Day: #</string>
+    <string name="HOME_TEAM">HOME</string>
+    <string name="AWAY_TEAM">AWAY</string>
+    <string name="home_goals">-</string>
+    <string name="away_goals">-</string>
+    <string name="match_status">Status: </string>
+    <string name="match_date">Date: </string>
+</resources>
